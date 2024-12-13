@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InputControoer;
+use App\Http\Controllers\Backend\HomeController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('user', function(){
     return view('user.user');
@@ -39,6 +40,15 @@ Route::get('detail/{myID?}/{myPhone}',function($myID='',$myPhone=''){
     echo "my phone:".$myPhone;
 })->name('detail');
 
-Route::fallback(function(){
-    return view('404');
-});
+
+Route::get('myInput',[InputControoer::class,'myInput'])->name('myInput');
+
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/detail',[HomeController::class,'detail'])->name('detail');
+
+
+
+
+// Route::fallback(function(){
+//     return view('404');
+// });
